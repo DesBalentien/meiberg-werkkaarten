@@ -307,5 +307,50 @@ Overleef niet alleen - bouw.`;
 })();
 </script>
 
+
+<!-- ===== Naar mijn WhatsApp ===== -->
+<script>
+(function(){
+  function v(k){var el=document.querySelector('[data-k="'+k+'"]');return el?(el.value||"").trim():"";}
+  function waText(){
+    var L=[];
+    L.push("💪 Mijn Mentale Survival Werkboek");
+    L.push("360! × Meiberg College");
+    L.push("");
+    if(v("naam")) L.push("Naam: "+v("naam"));
+    if(v("klas")) L.push("Klas: "+v("klas"));
+    L.push("");
+    if(v("label")) L.push("Label dat ze op mij plakten: "+v("label"));
+    if(v("eigenwoord")) L.push("Wie ik écht ben: "+v("eigenwoord"));
+    L.push("");
+    L.push("Mijn Survival Kit:");
+    if(v("kompas")) L.push("🧭 Kompas: "+v("kompas"));
+    if(v("vuur"))   L.push("🔥 Vuur: "+v("vuur"));
+    if(v("water"))  L.push("💧 Water: "+v("water"));
+    if(v("touw"))   L.push("🪢 Touw: "+v("touw"));
+    if(v("spiegel"))L.push("🪞 Spiegel: "+v("spiegel"));
+    if(v("zaklamp"))L.push("🔦 Zaklamp: "+v("zaklamp"));
+    L.push("");
+    var tools=[v("kit1"),v("kit2"),v("kit3")].filter(Boolean);
+    if(tools.length) L.push("Mijn 3 tools: "+tools.join(" · "));
+    if(v("meeneem")) L.push("Wat ik meeneem: "+v("meeneem"));
+    L.push("");
+    L.push("“Word veranderd door de vernieuwing van je denken.” — Romeinen 12:2");
+    return L.join("\n");
+  }
+  var tb=document.querySelector(".toolbar");
+  if(tb){
+    var b=document.createElement("button");
+    b.className="btn"; b.type="button"; b.textContent="📲 Naar mijn WhatsApp";
+    b.style.cssText="background:#25D366;color:#0b3b21;";
+    b.addEventListener("click",function(){
+      window.open("https://wa.me/?text="+encodeURIComponent(waText()),"_blank");
+    });
+    var first=document.getElementById("sp-btn");
+    if(first && first.nextSibling) tb.insertBefore(b, first.nextSibling); else tb.appendChild(b);
+  }
+})();
+</script>
+
 </body>
 </html>
