@@ -277,35 +277,6 @@ Overleef niet alleen - bouw.`;
   }
 </script>
 
-<!-- ===== Verstuur naar docent (Google Sheet) ===== -->
-<script>
-(function(){
-  var ENDPOINT="https://script.google.com/macros/s/AKfycbxkDcgyWAGB7217M1PgPXfsxwGH497FPtQAtjk718RZYNGkvboh5kDdsTq3X9G9Qi_dQQ/exec";
-  var LABELS={klas:"Klas",label:"Label dat op mij geplakt werd",eigenwoord:"Wie ik écht ben",kompas:"Kompas (3 woorden)",vuur:"Vuur (waar ik voor vecht)",water:"Water (wat mij oplaadt)",touw:"Touw (wie is mijn touw)",spiegel:"Spiegel (zin tegen mezelf)",zaklamp:"Zaklamp (dit doe ik niet)",kit1:"Survival tool 1",kit2:"Survival tool 2",kit3:"Survival tool 3",meeneem:"Wat ik meeneem"};
-  function val(k){var el=document.querySelector('[data-k="'+k+'"]');return el?(el.value||"").trim():"";}
-  function send(){
-    var msg=document.getElementById("sp-msg");
-    var naam=val("naam");
-    if(!naam){ msg.style.color="#ffd9c6"; msg.textContent="Vul eerst je naam in."; var n=document.getElementById("naam"); if(n)n.focus(); return; }
-    var velden=[];
-    Object.keys(LABELS).forEach(function(k){ var v=val(k); if(v) velden.push({l:LABELS[k],v:v}); });
-    if(!velden.length){ msg.style.color="#ffd9c6"; msg.textContent="Vul eerst een paar vakjes in."; return; }
-    var data={type:"meiberg",naam:naam,datum:new Date().toISOString().slice(0,10),velden:JSON.stringify(velden)};
-    try{ fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(data)}).catch(function(){}); }catch(e){}
-    msg.style.color="#bfe3c0"; msg.textContent="✓ Verstuurd naar je docent!";
-    var b=document.getElementById("sp-btn"); if(b){ b.disabled=true; b.style.opacity=".6"; }
-  }
-  var tb=document.querySelector(".toolbar");
-  if(tb){
-    var btn=document.createElement("button");
-    btn.className="btn primary"; btn.id="sp-btn"; btn.type="button"; btn.textContent="📨 Verstuur naar docent";
-    btn.addEventListener("click",send);
-    tb.insertBefore(btn, tb.firstChild);
-    var sp=document.createElement("span"); sp.id="sp-msg"; sp.style.cssText="color:#bfe3c0;font-size:12px;font-family:'League Spartan';font-weight:700;align-self:center;letter-spacing:.5px;";
-    tb.appendChild(sp);
-  }
-})();
-</script>
 
 
 <!-- ===== Naar mijn WhatsApp ===== -->
@@ -349,6 +320,36 @@ Overleef niet alleen - bouw.`;
     var first=document.getElementById("sp-btn");
     if(first && first.nextSibling) tb.insertBefore(b, first.nextSibling); else tb.appendChild(b);
   }
+})();
+</script>
+
+
+<!-- ===== Automatisch opslaan in Sheet ===== -->
+<script>
+(function(){
+  var ENDPOINT="https://script.google.com/macros/s/AKfycbxkDcgyWAGB7217M1PgPXfsxwGH497FPtQAtjk718RZYNGkvboh5kDdsTq3X9G9Qi_dQQ/exec";
+  var LABELS={klas:"Klas",label:"Label dat op mij geplakt werd",eigenwoord:"Wie ik écht ben",kompas:"Kompas (3 woorden)",vuur:"Vuur (waar ik voor vecht)",water:"Water (wat mij oplaadt)",touw:"Touw (wie is mijn touw)",spiegel:"Spiegel (zin tegen mezelf)",zaklamp:"Zaklamp (dit doe ik niet)",kit1:"Survival tool 1",kit2:"Survival tool 2",kit3:"Survival tool 3",meeneem:"Wat ik meeneem"};
+  function val(k){var el=document.querySelector('[data-k="'+k+'"]');return el?(el.value||"").trim():"";}
+  var sent=false;
+  function autoSave(){
+    if(sent) return;
+    var naam=val("naam");
+    var velden=[];
+    Object.keys(LABELS).forEach(function(k){ var v=val(k); if(v) velden.push({l:LABELS[k],v:v}); });
+    if(!naam && !velden.length) return;
+    sent=true;
+    var body=new URLSearchParams({type:"meiberg",naam:naam,datum:new Date().toISOString().slice(0,10),velden:JSON.stringify(velden)});
+    try{
+      if(navigator.sendBeacon){ navigator.sendBeacon(ENDPOINT, body); }
+      else { fetch(ENDPOINT,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"application/x-www-form-urlencoded"},body:body}); }
+    }catch(e){}
+  }
+  // bij "Opslaan als PDF / printen" (natuurlijke afronding)
+  var pb=document.querySelector(".toolbar .btn.primary");
+  if(pb) pb.addEventListener("click", autoSave);
+  // vangnet: bij verlaten van de pagina
+  window.addEventListener("pagehide", autoSave);
+  window.addEventListener("beforeunload", autoSave);
 })();
 </script>
 
