@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentale Survival — Digitaal Werkboek | 360! × Meiberg College</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#0D3EA2;--blue-dark:#0A2F7A;--orange:#FB5205;--white:#FFFFFF;--ink:#0B1220;--mute:#5a648a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Open Sans',-apple-system,Segoe UI,Roboto,sans-serif;background:#eef2fb;color:var(--ink);
+    padding:28px 18px 90px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .head{font-family:'League Spartan',Impact,sans-serif;font-weight:800;letter-spacing:-.5px;line-height:1;}
+  .wrap{max-width:1080px;margin:0 auto;}
+
+  .doc-head{text-align:center;margin-bottom:22px;}
+  .logo{font-family:'League Spartan';font-weight:900;font-size:40px;letter-spacing:-2px;color:var(--blue);}
+  .logo .ex{color:var(--orange);}
+  .doc-head .t{font-family:'League Spartan';font-weight:800;font-size:26px;color:var(--ink);margin-top:8px;letter-spacing:-.5px;}
+  .doc-head .s{color:#5a648a;font-size:14px;margin-top:4px;}
+
+  /* NAME BAR */
+  .namebar{background:#fff;border-radius:14px;box-shadow:0 8px 24px rgba(13,62,162,.08);
+    padding:16px 20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:8px;}
+  .namebar .f{flex:1;min-width:180px;display:flex;align-items:center;gap:10px;}
+  .namebar label{font-family:'League Spartan';font-weight:800;color:var(--blue);font-size:14px;white-space:nowrap;}
+  input,textarea{font-family:'Open Sans';font-size:15px;color:var(--ink);background:#f5f8ff;border:2px solid #d3ddf3;
+    border-radius:9px;padding:9px 12px;width:100%;transition:border-color .15s,background .15s;resize:vertical;}
+  input:focus,textarea:focus{outline:none;border-color:var(--orange);background:#fff;}
+  input::placeholder,textarea::placeholder{color:#9aa6c4;}
+
+  .section-label{font-family:'League Spartan';font-weight:800;letter-spacing:2px;text-transform:uppercase;
+    font-size:13px;color:var(--orange);margin:34px 0 14px;border-bottom:2px solid #d6def3;padding-bottom:8px;}
+
+  /* LABEL MOMENT */
+  .lab{background:radial-gradient(120% 120% at 80% -10%,#164cc0,#0A2F7A);color:#fff;border-radius:18px;padding:26px 30px;}
+  .lab h3{font-family:'League Spartan';font-weight:800;font-size:26px;letter-spacing:-.5px;margin-bottom:6px;}
+  .lab p.intro{color:rgba(255,255,255,.82);font-size:14px;margin-bottom:18px;}
+  .lab .field{margin-bottom:16px;}
+  .lab .lbl{font-family:'League Spartan';font-weight:700;font-size:15px;margin-bottom:7px;}
+  .lab .lbl .o{color:#ffb05a;}
+
+  /* TOOL CARDS GRID */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .tool{background:#fff;border-radius:16px;padding:20px;border-top:6px solid var(--orange);
+    box-shadow:0 8px 24px rgba(13,62,162,.08);display:flex;flex-direction:column;}
+  .tool .ico{font-size:32px;}
+  .tool .q{color:var(--orange);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin:10px 0 3px;}
+  .tool b{font-family:'League Spartan';font-weight:800;font-size:22px;display:block;color:var(--blue);letter-spacing:-.5px;}
+  .tool p{font-size:13.5px;color:#46506e;margin-top:6px;line-height:1.4;}
+  .tool .doe{margin-top:14px;font-family:'League Spartan';font-weight:700;font-size:13px;color:var(--ink);margin-bottom:7px;}
+  .tool .doe .o{color:var(--orange);}
+
+  /* ANKER */
+  .anchor{background:#0A2F7A;color:#fff;border-radius:16px;padding:26px 30px;text-align:center;}
+  .anchor .v{font-family:'League Spartan';font-weight:800;font-size:21px;line-height:1.25;letter-spacing:-.3px;max-width:760px;margin:0 auto;}
+  .anchor .v .hl{color:#ffb05a;}
+  .anchor .r{font-family:'League Spartan';font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffd9c6;font-size:12px;margin-top:14px;}
+
+  /* KIT */
+  .kit{background:#fff;border-radius:18px;border:2px solid var(--blue);overflow:hidden;max-width:600px;margin:0 auto;}
+  .kit .top{background:radial-gradient(120% 120% at 80% -10%,#164cc0,#0A2F7A);color:#fff;padding:22px 28px;}
+  .kit .top .lg{font-family:'League Spartan';font-weight:900;font-size:22px;letter-spacing:-1px;}
+  .kit .top .lg .ex{color:var(--orange);}
+  .kit .top .ttl{font-family:'League Spartan';font-weight:800;font-size:26px;letter-spacing:-.5px;margin-top:4px;}
+  .kit .body{padding:24px 28px;}
+  .field{margin-bottom:18px;}
+  .field .lbl{font-family:'League Spartan';font-weight:800;color:var(--blue);font-size:15px;margin-bottom:8px;letter-spacing:-.2px;}
+  .field .lbl .o{color:var(--orange);}
+  .slot{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .slot .dot{width:28px;height:28px;border-radius:50%;background:var(--orange);color:#fff;font-family:'League Spartan';
+    font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .kit .foot{background:#f3f6ff;padding:14px 28px;font-family:'League Spartan';font-weight:700;color:var(--blue);font-size:15px;text-align:center;}
+
+  /* TOOLBAR */
+  .toolbar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,47,122,.97);backdrop-filter:blur(6px);
+    padding:12px 18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;z-index:50;box-shadow:0 -6px 20px rgba(0,0,0,.18);}
+  .btn{font-family:'League Spartan';font-weight:800;font-size:14px;letter-spacing:.3px;border:none;border-radius:10px;
+    padding:11px 18px;cursor:pointer;transition:transform .1s,filter .15s;}
+  .btn:active{transform:translateY(1px);}
+  .btn.primary{background:var(--orange);color:#fff;}
+  .btn.ghost{background:rgba(255,255,255,.16);color:#fff;}
+  .btn:hover{filter:brightness(1.08);}
+  .saved{color:#bfe3c0;font-size:12px;font-family:'League Spartan';font-weight:700;align-self:center;letter-spacing:.5px;opacity:0;transition:opacity .3s;}
+  .saved.show{opacity:1;}
+
+  footer{text-align:center;color:#7b85a6;font-size:13px;margin-top:40px;border-top:1px solid #d6def3;padding-top:20px;}
+
+  @media print{
+    body{background:#fff;padding:0;}
+    .toolbar{display:none;}
+    .tool,.lab,.kit,.anchor{break-inside:avoid;}
+    .pagebreak{break-before:page;}
+    input,textarea{border:none;border-bottom:1.5px solid #c4cfe8;border-radius:0;background:#fff;}
+  }
+  @media(max-width:780px){.grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="doc-head">
+    <div class="logo">360<span class="ex">!</span></div>
+    <div class="t">Mentale Survival — Mijn Werkboek</div>
+    <div class="s">Meiberg College · VSO klas 1–4 · vrijdag 19 juni · Des Balentien</div>
+  </div>
+
+  <!-- NAAM -->
+  <div class="namebar">
+    <div class="f"><label for="naam">Naam</label><input id="naam" data-k="naam" placeholder="Jouw naam"></div>
+    <div class="f" style="max-width:160px;"><label for="klas">Klas</label><input id="klas" data-k="klas" placeholder="Klas"></div>
+  </div>
+
+  <!-- LABEL MOMENT -->
+  <div class="section-label">1 · Het label-moment</div>
+  <div class="lab">
+    <h3>Het label dat je kreeg</h3>
+    <p class="intro">Een label plakt iemand ánders op je. Maar jíj bepaalt wat je gelooft. En wat je gelooft — wordt wie je wordt.</p>
+    <div class="field">
+      <div class="lbl">Het label dat ze op mij plakten <span class="o">— maar dat niet van mij is:</span></div>
+      <input data-k="label" placeholder="Typ hier het woord...">
+    </div>
+    <div class="field">
+      <div class="lbl">Wie ik <span class="o">écht</span> ben (mijn eigen woord):</div>
+      <input data-k="eigenwoord" placeholder="Typ hier jouw eigen woord...">
+    </div>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="section-label">2 · De Mentale Survival Kit — vul elke tool in</div>
+  <div class="grid">
+    <div class="tool">
+      <div class="ico">🧭</div><div class="q">Wat is veerkracht?</div><b>Het Kompas</b>
+      <p>Je waarden en richting. Weten wie je wilt zijn, ook als het stormt.</p>
+      <div class="doe"><span class="o">Doe:</span> kies 3 woorden die jouw kompas zijn.</div>
+      <input data-k="kompas" placeholder="Jouw 3 woorden...">
+    </div>
+    <div class="tool">
+      <div class="ico">🔥</div><div class="q">Wanneer zet je 't in?</div><b>Het Vuur</b>
+      <p>Je innerlijke motivatie. Wat je aan blijft zetten als je wilt stoppen.</p>
+      <div class="doe"><span class="o">Doe:</span> waar vecht jij voor?</div>
+      <input data-k="vuur" placeholder="Jouw antwoord...">
+    </div>
+    <div class="tool">
+      <div class="ico">💧</div><div class="q">Hoe zorg je mentaal?</div><b>Het Water</b>
+      <p>Zelfzorg en rust. Je tank bijvullen vóórdat je leeg bent.</p>
+      <div class="doe"><span class="o">Doe:</span> noem 1 ding dat jou oplaadt.</div>
+      <input data-k="water" placeholder="Jouw antwoord...">
+    </div>
+    <div class="tool">
+      <div class="ico">🪢</div><div class="q">Hoe versterk je 't?</div><b>Het Touw</b>
+      <p>Verbinding en hulp durven vragen. Sterk zijn is ook leunen op iemand.</p>
+      <div class="doe"><span class="o">Doe:</span> wie is jouw touw?</div>
+      <input data-k="touw" placeholder="Jouw antwoord...">
+    </div>
+    <div class="tool">
+      <div class="ico">🪞</div><div class="q">Wat is veerkracht?</div><b>De Spiegel</b>
+      <p>Je zelfbeeld en identiteit. Wat je tegen jezelf zegt, bouwt wie je wordt.</p>
+      <div class="doe"><span class="o">Doe:</span> één echte, goede zin tegen jezelf.</div>
+      <input data-k="spiegel" placeholder="Jouw zin...">
+    </div>
+    <div class="tool">
+      <div class="ico">🔦</div><div class="q">Hoe zet je 't in?</div><b>De Zaklamp</b>
+      <p>Grenzen aangeven en "nee" durven zeggen. Zien wat goed voor je is.</p>
+      <div class="doe"><span class="o">Doe:</span> waar zeg jij "dit doe ik niet"?</div>
+      <input data-k="zaklamp" placeholder="Jouw antwoord...">
+    </div>
+  </div>
+
+  <!-- ANKER -->
+  <div class="section-label">3 · Het anker</div>
+  <div class="anchor">
+    <div class="v">"Word niet gelijkvormig aan deze wereld, maar word <span class="hl">veranderd door de vernieuwing van je denken</span>."</div>
+    <div class="r">Romeinen 12:2</div>
+  </div>
+
+  <!-- KIT -->
+  <div class="section-label pagebreak">4 · Mijn Survival Kit</div>
+  <div class="kit">
+    <div class="top">
+      <div class="lg">360<span class="ex">!</span></div>
+      <div class="ttl">Mijn Survival Kit</div>
+    </div>
+    <div class="body">
+      <div class="field">
+        <div class="lbl">Mijn 3 tools <span class="o">als het zwaar wordt:</span></div>
+        <div class="slot"><div class="dot">1</div><input data-k="kit1" placeholder="Tool 1..."></div>
+        <div class="slot"><div class="dot">2</div><input data-k="kit2" placeholder="Tool 2..."></div>
+        <div class="slot"><div class="dot">3</div><input data-k="kit3" placeholder="Tool 3..."></div>
+      </div>
+      <div class="field">
+        <div class="lbl">Wat ik vandaag <span class="o">meeneem:</span></div>
+        <textarea data-k="meeneem" rows="3" placeholder="Schrijf hier wat je onthoudt..."></textarea>
+      </div>
+    </div>
+    <div class="foot">Overleef niet alleen — bouw.</div>
+  </div>
+
+  <footer>360! × Meiberg College · Mentale Survival · Des Balentien — (P)REACHER · @desbalentien</footer>
+</div>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <button class="btn primary" onclick="window.print()">🖨️ Opslaan als PDF / printen</button>
+  <button class="btn ghost" onclick="downloadTxt()">⬇️ Download mijn antwoorden</button>
+  <button class="btn ghost" onclick="wisAlles()">🗑️ Wissen</button>
+  <span class="saved" id="saved">✓ automatisch opgeslagen</span>
+</div>
+
+<script>
+  const KEY='meiberg-mentale-survival-werkboek';
+  const fields=[...document.querySelectorAll('[data-k]')];
+  const savedEl=document.getElementById('saved');
+  let t;
+
+  // laden
+  try{
+    const data=JSON.parse(localStorage.getItem(KEY)||'{}');
+    fields.forEach(f=>{ if(data[f.dataset.k]!=null) f.value=data[f.dataset.k]; });
+  }catch(e){}
+
+  function save(){
+    const data={};
+    fields.forEach(f=>data[f.dataset.k]=f.value);
+    try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){}
+    savedEl.classList.add('show');
+    clearTimeout(t); t=setTimeout(()=>savedEl.classList.remove('show'),1400);
+  }
+  fields.forEach(f=>f.addEventListener('input',save));
+
+  function val(k){const el=fields.find(f=>f.dataset.k===k);return el?el.value:'';}
+  function downloadTxt(){
+    const naam=val('naam')||'leerling';
+    const txt=
+`MENTALE SURVIVAL — MIJN WERKBOEK
+360! x Meiberg College
+
+Naam: ${val('naam')}
+Klas: ${val('klas')}
+
+1) HET LABEL-MOMENT
+Het label dat ze op mij plakten: ${val('label')}
+Wie ik echt ben (mijn eigen woord): ${val('eigenwoord')}
+
+2) DE MENTALE SURVIVAL KIT
+Kompas (3 woorden):   ${val('kompas')}
+Vuur (waar vecht ik voor): ${val('vuur')}
+Water (wat laadt mij op):  ${val('water')}
+Touw (wie is mijn touw):   ${val('touw')}
+Spiegel (zin tegen mezelf):${val('spiegel')}
+Zaklamp (dit doe ik niet): ${val('zaklamp')}
+
+3) HET ANKER
+"Word niet gelijkvormig aan deze wereld, maar word veranderd door de vernieuwing van je denken." - Romeinen 12:2
+
+4) MIJN SURVIVAL KIT
+Tool 1: ${val('kit1')}
+Tool 2: ${val('kit2')}
+Tool 3: ${val('kit3')}
+Wat ik meeneem: ${val('meeneem')}
+
+Overleef niet alleen - bouw.`;
+    const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='Survival-Kit-'+naam.replace(/\s+/g,'-')+'.txt';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+  function wisAlles(){
+    if(!confirm('Weet je het zeker? Al je antwoorden worden gewist.'))return;
+    fields.forEach(f=>f.value='');
+    try{localStorage.removeItem(KEY);}catch(e){}
+  }
+</script>
+
+<!-- ===== Verstuur naar docent (Google Sheet) ===== -->
+<script>
+(function(){
+  var ENDPOINT="https://script.google.com/macros/s/AKfycbxkDcgyWAGB7217M1PgPXfsxwGH497FPtQAtjk718RZYNGkvboh5kDdsTq3X9G9Qi_dQQ/exec";
+  var LABELS={klas:"Klas",label:"Label dat op mij geplakt werd",eigenwoord:"Wie ik écht ben",kompas:"Kompas (3 woorden)",vuur:"Vuur (waar ik voor vecht)",water:"Water (wat mij oplaadt)",touw:"Touw (wie is mijn touw)",spiegel:"Spiegel (zin tegen mezelf)",zaklamp:"Zaklamp (dit doe ik niet)",kit1:"Survival tool 1",kit2:"Survival tool 2",kit3:"Survival tool 3",meeneem:"Wat ik meeneem"};
+  function val(k){var el=document.querySelector('[data-k="'+k+'"]');return el?(el.value||"").trim():"";}
+  function send(){
+    var msg=document.getElementById("sp-msg");
+    var naam=val("naam");
+    if(!naam){ msg.style.color="#ffd9c6"; msg.textContent="Vul eerst je naam in."; var n=document.getElementById("naam"); if(n)n.focus(); return; }
+    var velden=[];
+    Object.keys(LABELS).forEach(function(k){ var v=val(k); if(v) velden.push({l:LABELS[k],v:v}); });
+    if(!velden.length){ msg.style.color="#ffd9c6"; msg.textContent="Vul eerst een paar vakjes in."; return; }
+    var data={type:"meiberg",naam:naam,datum:new Date().toISOString().slice(0,10),velden:JSON.stringify(velden)};
+    try{ fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(data)}).catch(function(){}); }catch(e){}
+    msg.style.color="#bfe3c0"; msg.textContent="✓ Verstuurd naar je docent!";
+    var b=document.getElementById("sp-btn"); if(b){ b.disabled=true; b.style.opacity=".6"; }
+  }
+  var tb=document.querySelector(".toolbar");
+  if(tb){
+    var btn=document.createElement("button");
+    btn.className="btn primary"; btn.id="sp-btn"; btn.type="button"; btn.textContent="📨 Verstuur naar docent";
+    btn.addEventListener("click",send);
+    tb.insertBefore(btn, tb.firstChild);
+    var sp=document.createElement("span"); sp.id="sp-msg"; sp.style.cssText="color:#bfe3c0;font-size:12px;font-family:'League Spartan';font-weight:700;align-self:center;letter-spacing:.5px;";
+    tb.appendChild(sp);
+  }
+})();
+</script>
+
+</body>
+</html>
